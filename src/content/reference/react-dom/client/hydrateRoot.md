@@ -47,34 +47,34 @@ React, `domNode` içinde mevcut olan HTML ile bağlanacak ve onu yönetmeye baş
   * **isteğe bağlı** `identifierPrefix`: React'in [`useId`.](/reference/react/useId) ile oluşturulan kimlikler için kullandığı bir dize ön eki. Aynı sayfada birden fazla kök kullanırken çakışmaları önlemek için faydalıdır. Sunucuda kullanılan ön ekle aynı olmalıdır.
 
 
-#### Returns {/*returns*/}
+#### Dönen Değerler {/*returns*/}
 
-`hydrateRoot` returns an object with two methods: [`render`](#root-render) and [`unmount`.](#root-unmount)
+`hydrateRoot` iki method a sahip bir obje döner: [`render`](#root-render) ve [`unmount`.](#root-unmount)
 
-#### Caveats {/*caveats*/}
+#### Uyarılar {/*caveats*/}
 
-* `hydrateRoot()` expects the rendered content to be identical with the server-rendered content. You should treat mismatches as bugs and fix them.
-* In development mode, React warns about mismatches during hydration. There are no guarantees that attribute differences will be patched up in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
-* You'll likely have only one `hydrateRoot` call in your app. If you use a framework, it might do this call for you.
-* If your app is client-rendered with no HTML rendered already, using `hydrateRoot()` is not supported. Use [`createRoot()`](/reference/react-dom/client/createRoot) instead.
+* `hydrateRoot()`, oluşturulan içeriğin sunucu tarafından oluşturulan içerikle aynı olmasını bekler. Uyumsuzlukları hata olarak ele alıp düzeltmelisiniz.
+* Geliştirme modunda, React, "hydration" sırasında uyuşmazlıklar konusunda uyarılar verir. Uyuşmazlık durumunda özellik farklarının düzeltilmesi garanti edilmez. Bu, performans nedenleriyle önemlidir çünkü çoğu uygulamada uyuşmazlıklar nadirdir ve bu nedenle tüm işaretlemeyi doğrulamak aşırı maliyetli olur.
+* Uygulamanızda muhtemelen yalnızca bir `hydrateRoot` çağrısı olacaktır. Bir çatı (framework) kullanıyorsanız, bu çağrıyı sizin yerinize gerçekleştirebilir.
+* Eğer uygulamanızda daha önceden render edilmiş bir HTML olmadan istemci tarafında render ediliyorsa, `hydrateRoot()` kullanımı desteklenmez. Bunun yerine [`createRoot()`](/reference/react-dom/client/createRoot) kullanın.
 
 ---
 
 ### `root.render(reactNode)` {/*root-render*/}
 
-Call `root.render` to update a React component inside a hydrated React root for a browser DOM element.
+Bir tarayıcı DOM elemanındaki "hidrate edilmiş" bir React kökünde React bileşenini güncellemek için `root.render` çağrısını yapın.
 
 ```js
 root.render(<App />);
 ```
 
-React will update `<App />` in the hydrated `root`.
+React, "hydrate edilmiş" `root` içinde `<App />` bileşenini güncelleyecektir.
 
-[See more examples below.](#usage)
+[Aşağıda daha fazla örnek görün.](#usage)
 
-#### Parameters {/*root-render-parameters*/}
+#### Parametreler {/*root-render-parameters*/}
 
-* `reactNode`: A "React node" that you want to update. This will usually be a piece of JSX like `<App />`, but you can also pass a React element constructed with [`createElement()`](/reference/react/createElement), a string, a number, `null`, or `undefined`.
+* `reactNode`: Güncellemek istediğiniz "React düğümü". Bu genellikle `<App />` gibi bir JSX parçası olacaktır, ancak aynı zamanda [`createElement()`](/reference/react/createElement) ile oluşturulmuş bir React elemanı, bir dize, bir sayı, `null` veya `undefined` de geçirebilirsiniz.
 
 
 #### Returns {/*root-render-returns*/}
